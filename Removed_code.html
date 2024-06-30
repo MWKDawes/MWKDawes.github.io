@@ -1,0 +1,260 @@
+<!----- HTML ----->
+        <!--Navigation - no longer needed-->
+        <!--
+        <div class="Navbar">
+            <a href="#Home">Home</a>
+            <a href="#Slideshow">Slideshow</a>
+            <a href="#About">About Me</a>
+            <a href="#Github">Github</a>
+            <a href="#Contact">Contact</a>
+        </div>
+
+        
+        <img src="./Images/Mountainscape.jpeg" alt="Misty Mountains">
+
+        <br>
+        <br>
+        -->
+        <!--Background video - no longer needed-->
+        <!--
+        <div id="Home">
+            <video autoplay muted loop id="Typing_Video">
+                <source src="./Images/Video/Matrix.mp4" type="video/mp4">
+                Your browser does not support HTML5 video.
+            </video>
+        </div>
+        -->
+        <!--Video text - replace with header-->
+        <!--
+        <div class="Video_Text">
+            <h1 class="white-text">Mike Dawes's Portfolio</h1>
+            <strong>
+                <p class="center">
+                    <q>The universe itself keeps on expanding and expanding
+                        <br>In all of the directions it can whizz.
+                    </q>
+                    <br>-Eric Idle (Monty Python)
+                    <br>
+                    <br>My name is Mike Dawes. Check out my portfolio!
+                    <br>
+                    <br>Thanks for popping in, enjoy!
+                </p>
+            </strong>
+        </div>
+        -->
+        <!--Slideshow section-->
+        <!-- <div id="Slideshow">
+            <div id="Slideshow_Background">
+                <div id="Slideshow_Container">
+                    Slide 1
+                    <div class="mySlides fade">
+                        <img class="Slideshow_Images" src="./Images/PersonalPhoto.jpg" alt="Picture of myself and my Nana">
+                        <div class="text">I'm here to help get your project to the next level!</div>
+                    </div>
+                    Slide 2
+                    <div class="mySlides fade">
+                        <img class="Slideshow_Images" src="./Images/HTML_CSS_JS_Java_Python.png" alt="Icons for HTML, CSS, JS, Java, Python">
+                        <div class="text">I'm a UI/UX developer, trained in<br> these languages, including:</div>
+                    </div>
+                    Slide 3
+                    <div class="mySlides fade">
+                        <img class="Slideshow_Images" src="./Images/C++.png" alt="C++ icon">
+                        <div class="text">Have taken classes in C++ for game development</div>
+                    </div>
+                    Slide 4
+                    <div class="mySlides fade">
+                        <img class="Slideshow_Images" src="./Images/Computer_writing.jpg" alt="Writing on Computer image">
+                        <div class="text"><a class="white-text contact" onclick="openForm()">Feel free to contact me for any questions!</a></div>
+                    </div>
+                    Previous and next buttons-->
+                    <!-- <a class="Previous" onclick="plusSlides(-1)">&#10094;</a> -->
+                    <!-- <a class="Next" onclick="plusSlides(1)">&#10095;</a> -->
+                </div>
+                <br>
+
+                <!-- Slideshow dots
+                <div style="text-align: center">
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                    <span class="dot" onclick="currentSlide(4)"></span>
+                </div>
+            </div>
+        </div> -->
+
+        
+
+
+
+        <!--Footer section-->
+        <!-- <footer>
+            <p>
+                <p class="center">&copy;MWKD Inc., <a href="https://www.DangerousToGoAlone.com" target="_blank">...Take this</a></p>
+            </p>
+        </footer> -->
+        
+<!----- CSS ----->
+
+<!--/*body.fade-out {
+    opacity: .1; *//*Sets level of opacity at start of fade*//*
+}*/
+
+/* Heading 1 elements */
+/* h1 {
+    text-transform: uppercase; /*Capitalize letters*/
+    /* font-family: 'Mairon', sans-serif;    Sets font family for h1 */
+    /* text-align: center; Centering h1 elements */
+    /* margin-top: 3%; small margin above h1 elements */
+    /* color: #abaf2f; */
+    /* text-shadow: 3px 3px 5px #1f724b; */
+/* } */
+
+/* h1:hover { */
+    /* filter: sepia(50%); Sepia filter over h1 headings */
+    /* transform: scale(1.1); increase size of h1 when hovered */
+    /* transition: transform .5s; Causes transformation to last 1 second */
+/* } */
+
+/*Portfolio Title Text Styling*/
+/* .white-text { */
+    /* color: #999D2B; Changes color of Portfolio Title Text */
+    /* padding-top: 10vh; Adds padding to top of Portfolio */
+/* } */
+
+
+/* p:hover {
+    transition: transform 0.5s;
+    transform: scale(1.1);
+} */
+
+/** VIDEO STYLING **/
+/* #Typing_Video {
+    top: 0;
+    min-height: 100%;
+    min-width: auto;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    z-index: -1;
+} */
+
+/* 
+@media screen and (max-width: 576px) {
+    #Typing_Video {
+        display: none;
+    }
+}
+
+.Video_Text {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    width: 100%;
+    height: 100vh;
+    padding-top: 2vh;
+    position: relative;
+    -webkit-animation: moveVideoText 5.75s;
+    animation: moveVideoText 5.75s;
+}
+ */
+
+@keyframes moveVideoText {
+    from {top:-100vw;}
+    to {top:0vw;}
+}
+
+/*Styling of dots under slideshow*/
+/* .dot {
+    cursor: pointer;
+    height: 1vw;
+    width: 1vw;
+    margin: .25vw;
+    background-color: white;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+    z-index: 1;
+} */
+
+/** SLIDESHOW STYLING **/
+#Slideshow_Background {
+    background: rgb(0,0,0,.75);
+}
+
+/*** NAVBAR STYLING ***/
+.Navbar {
+    overflow: hidden;
+    background-color: #2B9D68;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    -webkit-animation: moveNav 5s;
+    animation: moveNav 5s;
+}
+
+@keyframes moveNav {
+    from {left: -100vw;}
+    to {left: 0vw;}
+}
+
+/* Links */
+.Navbar a {
+    float: left;
+    display: block;
+    color: #b5b932;
+    padding: .75vw 1vw;
+    text-decoration: none;
+    font-family: 'Mairon', sans-serif;
+    font-size: 1.5vw;
+    text-align: center;
+    text-shadow: 3px 3px 5px rgb(23, 83, 55);
+    position: relative;
+}
+
+.Navbar a:hover {
+    background-color:#21754e; /*Defines background color when hovered*/
+    color: #999D2B; /*Defines font color to display when navbar elements are hovered*/
+    font-weight: bold; /*Makes navbar text bold when hovered*/
+    cursor: pointer; 
+    transition: 0.5s ease-in; /*Creates smooth transition for hover trigger*/
+}
+
+.Navbar a.active {
+    background-color: #1f724b;
+}
+
+/**END OF NAVBAR**/
+
+/* Image Elements */
+/* img { */
+    /* filter: sepia(75%); Gives pics 75% sepia */
+    /* border-radius: 8px; All images slight round corners */
+    /* max-width: 100%; Ensures all images stay within width of container */
+    /* max-height: 100%; Ensures all images stay within height */
+    /* display: block; Specifying block display to ensure images are centered */
+    /* margin: auto auto auto auto; Centers images */
+/* } */
+
+/* img:hover {
+    filter: none;
+    transition: transform 1s;
+    transform: scale(1.1);
+} */
+
+/* footer {
+    padding: 2%;
+    background-color: black;
+    color: white;
+} */
+
+
+/* .Row:after {
+    content: "";
+    display: table;
+    clear: both;
+} */
+
+-->
+
+<!----- JS ----->
