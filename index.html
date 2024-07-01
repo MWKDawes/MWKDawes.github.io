@@ -1,1 +1,128 @@
-First Update
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Mike Dawes | Portfolio</title>
+        <link rel="stylesheet" type="text/css" href="./CSS/Portfolio_css.css">
+        <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/zelda-dx">
+        <link href="https://fonts.cdnfonts.com/css/mairon" rel="stylesheet">
+    </head>
+
+    <!--Body-->
+    <body>
+        <div class="name-container">
+            <div><img src="Images/NameLogo.png" id="nameicon" alt="Mike Dawes"></div>
+            <div><p id="monty"><q>The universe itself keeps on expanding and expanding<br>in all of the directions it can whizz.</q>
+                    <br>-Eric Idle (Monty Python)
+                </p></div>
+        </div>
+
+        <!--About-->
+        <div class="Row" id="About">
+            <!--Left Column-->
+            <div class="Column_2">
+            </div>
+            <!--Right Column-->
+            <div class="Column_1"  id="TRCol">
+                <p id="TRTex">
+                    <p2>I am a newly trained software programmer and have a passion for graphic design and coding.</p2>
+                    <br>
+                    <br>I am a graduate of <a href="https://www.learncodinganywhere.com" target="_blank">The Tech Academy</a>'s UI/UX Design Boot Camp, along with graduating classes through Udemy, Coursera, and Code in Place. I am trained and experienced in HTML, CSS, JavaScript, and more.
+                </p>
+            </div>
+        </div>
+
+        <!--Github Section-->
+        <div class="Row" id="Github">
+            <!--Left Column-->
+            <div class="Column_1" id="BLCol">
+                <p id="BLTex">You can view my various coding projects by checking out my profiles!
+                    <br><br>
+                    <a href="https://github.com/MWKDawes" target="_blank"><img src="./Images/Github.png" alt="Github Logo" id="icon"></a>&nbsp
+                    <a href="https://dribbble.com/MWKDawes" target="_blank"><img src="./Images/Dribbble.png" alt="Dribbble Logo" id="icon"></a>&nbsp &nbsp
+                    <a href="https://www.linkedin.com/in/mikewkdawes/" target="_blank"><img src="./Images/LinkedIn.png" alt="Linked In Logo" id="icon"></a>
+                    <br><br>
+                    ...or take a look at my résumé!
+                    <br><br>
+                    <a href="https://docs.google.com/document/d/1XbOYgToaYtNhNHYznGjZbq5wHFL1YS_hOPMPL8DKqpE/edit?usp=sharing" target="_blank"><img src="./Images/resume.png" alt="Resume Logo" id="icon"></a>
+                </p>
+            </div>
+
+            <!--Right column-->
+            <div class="Column_2">
+                <!--Slideshow section-->
+                <div id="Slideshow">
+                    <div id="Slideshow_Background">
+                        <div id="Slideshow_Container">
+                            <!--Slide 1-->
+                            <div class="mySlides fade">
+                                <img class="Slideshow_Images" src="./Images/PersonalPhoto.jpg" alt="Picture of myself and my Nana">
+                                <div class="text">I'm here to help get your project to the next level!</div>
+                            </div>
+                            <!--Slide 2-->
+                            <div class="mySlides fade">
+                                <img class="Slideshow_Images" src="./Images/HTML.png" alt="Icon for HTML">
+                                <div class="text">I'm a UI/UX developer, trained in many languages including: HTML</div>
+                            </div>
+                            <!--Slide 3-->
+                            <div class="mySlides fade">
+                                <img class="Slideshow_Images" src="./Images/CSS.png" alt="Icon for CSS">
+                                <div class="text">CSS</div>
+                            </div>
+                            <!--Slide 4-->
+                            <div class="mySlides fade">
+                                <img class="Slideshow_Images" src="./Images/JS.png" alt="Icon for JS">
+                                <div class="text">Javascript</div>
+                            </div>
+                            <!--Slide 5-->
+                            <div class="mySlides fade">
+                                <img class="Slideshow_Images" src="./Images/Python.png" alt="Icon for Python">
+                                <div class="text">Python</div>
+                            </div>
+                            <!--Slide 6-->
+                            <div class="mySlides fade">
+                                <img class="Slideshow_Images" src="./Images/Java.png" alt="Icons for Java">
+                                <div class="text">Java</div>
+                            </div>
+                            <!--Slide 7-->
+                            <div class="mySlides fade">
+                                <img class="Slideshow_Images" src="./Images/CSharp.png" alt="C# icon">
+                                <div class="text">Have taken classes in C# for game development, and more!</div>
+                            </div>
+                            <!--Slide 8-->
+                            <div class="mySlides fade">
+                                <img class="Slideshow_Images" src="./Images/Computer_writing.jpg" alt="Writing on Computer image">
+                                <div class="text" id="cont"><a class="white-text contact" onclick="openForm()">Feel free to contact me for any questions!</a></div>
+                            </div>
+                            <!--Previous and next buttons-->
+                            <a class="Previous" onclick="plusSlides(-1)">&#10094;</a>
+                            <a class="Next" onclick="plusSlides(1)">&#10095;</a>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Contact-->
+        <div class="contact">
+            <button onclick="openForm()" class="Pop_Up_Button">CONTACT</button>
+            <div class="form-popup" id="myForm">
+                <form action="https://formspree.io/f/mgegwnde" method="post" class="form-container"> 
+                    <h1>Questions? Comments? Let me know!</h1>
+                    <label>Name:</label>
+                        <input type="text" placeholder="Name" name="name" required>
+                    <label>Email:</label>
+                        <input type="text" id="Email" name="Email" placeholder="Email">
+                    <label>Message:</label>
+                        <input type="text" id="Message" name="Message" placeholder="Can't wait to hear from you!">
+                    
+                    <button type="submit" class="btn">SUBMIT</button>
+                    <button type="button" class="btn cancel" onclick="closeForm()">CLOSE</button>
+                </form>
+            </div>
+        </div>
+        <script src="./JS/main.js"></script>
+    </body>
+</html>
