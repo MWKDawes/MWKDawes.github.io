@@ -2,39 +2,37 @@ html {
     background: no-repeat;
     /* background-position: 1; */
     background-image: url('../Images/MusicTreeArt2.png'), radial-gradient(circle, #6A5637, #000000);
-    background-size: 50vw 50vh, 100vw 100vh;
-    background-position-y: 15%, 0%;
+    background-size: 50% 50%, 100% 100%;
+    background-position: 0% 20%, center;
 }
 
 /* Body */
 body {
-    background: none;
-    margin: 0%; /*Display site all the way to edge of page*/
+    margin: 0; /*Display site all the way to edge of page*/
     /*opacity: 1;*/ /*This with transition affect page loading effect*/
     /*transition: 3s opacity; 3s fade in */
     /* letter-spacing: .2vw; Relative measurement */
-    font-family: 'Tw Cen MT';
+    font-family: 'Tw Cen MT', Arial, sans-serif;
     /* font-size: 1.5vw; */
     overflow-x: hidden; /*Prevents horizontal scroll when quote is hovered and enlarged */
-    user-select: none; /*Prevents text on webpage from being highlighted*/
+    user-select: none;
+    background: none; /*Prevents text on webpage from being highlighted*/
 }
 
 /* Paragraph elements */
 p {
     font-family: 'Tw Cen MT', Courier, monospace;
     letter-spacing: .1vw;
-    padding-left: 2vw;
-    padding-right: 2vw;
+    padding: 0 2vw;
     color: #707070;
 }
 
 p2 {
     font-family: 'Tw Cen MT', Courier, monospace;
     letter-spacing: .05vw;
-    padding-left: 2vw;
-    padding-right: 2vw;
+    padding: 0 2vw;
     color: #707070;
-    font-size: larger;
+    font-size: 1em;
     font-weight: bold;
 }
 
@@ -66,9 +64,9 @@ q {
 
 /*Slideshow section / container*/
 #Slideshow_Container {
-    width: 20em; /*Relative sizing of container for slideshow*/
+    width: 15%; /*Relative sizing of container for slideshow*/
     height: auto; /*Height of container is adjusted based on content its displaying*/
-    padding-top: 4vh; /*Adds small padding to top of container */
+    padding: 0 4vh 0 4vh; /*Adds small padding to top of container */
     position: relative; /*Sets container relative to normal positioning*/
     margin: auto;
 }
@@ -83,8 +81,8 @@ q {
     vertical-align: middle; /*centers images vertically within slideshow container*/
     height: auto; /*Heigh of images is adjusted based on content*/
     box-shadow: 0px 5px 10px 12px rgb(0,0,0,.75); /*Adds shadow*/
-    width: 20em; /*Width of images automatically adjuste based on content*/
-    border-radius: 0 0 5px 5px;
+    width: 131.5%; /*Width of images automatically adjuste based on content*/
+    border-radius: 5px;
 }
 
 /*Next and Previous buttons*/
@@ -92,24 +90,24 @@ q {
     cursor: pointer; /*Changes mouse to pointer when buttons are selected*/
     position: absolute; /*Makes next and previous positioned relative to slideshow*/
     top: 50%; /*Moves buttons up the slideshow container*/
-    /* width: -40vh; Width of buttons is automatically adjusted based on content */
-    padding: 0vw; /*Adds padding*/
+    transform: translateY(-50%); /* Centers buttons vertically */ /*Width of buttons is automatically adjusted based on content */
+    padding: 0%; /*Adds padding*/
     color: #707070;
     font-weight: bold;
     font-size: 2em;
-    border-radius: 0 3px 3px 0; /*Adds slightly rounded border*/
+    border-radius: 3px; /*Adds slightly rounded border*/
     user-select: none; /*Property makes it so user cannot highlight content*/
     transition: 0.6s ease; /*Specifies details of hover transition*/
 }
 
 /*Positioning for next button on right hand side*/
 .Next {
-    right: 0; /*Moves next button to right side of slideshow container*/
+    right: -12%; /*Moves next button to right side of slideshow container*/
     border-radius: 3px 0 0 3px; /*Changes border radius on next button to top and left*/
 }
 
 .Previous {
-    left: 0; /*Moves next button to right side of slideshow container*/
+    left: 12%; /*Moves next button to right side of slideshow container*/
     border-radius: 0 3px 3px 0; /*Changes border radius on next button to top and left*/
 }
 
@@ -182,11 +180,13 @@ q {
     background-repeat: no-repeat, no-repeat;
     background-size: contain, cover;
     text-align: center;
+    overflow: hidden;
 }
 
 #TRTex {
     padding-top: 2vw;
     text-align: center;
+    font-size: 1.3rem;
 }
 
 #BLCol {
@@ -205,7 +205,7 @@ q {
 }
 
 #icon {
-    width: 5em;
+    width: 20%;
 }
 
 .Column_2 {
@@ -321,59 +321,49 @@ button:hover, .form-container .btn:hover {
 
 /***** Media Query Section *****/
 /*Media rules for paragraph font size for different screen sizes*/
-@media screen and (max-width: 527px) {
-    p p2 {
-        font-size: 3.75vw;
+@media (max-width: 600px) {
+    p, p2 {
+        font-size: 1rem;
+    }
+
+    .Column_1, .Column_2 {
+        width: 100%;
+        height: auto;
+    }
+
+    #Slideshow_Container {
+        width: 100%;
     }
 }
 
-@media screen and (min-width: 528px) and (max-width: 660px) {
-    p p2 {
-        font-size: 3.5vw;
+@media (min-width: 601px) and (max-width: 1024px) {
+    p, p2 {
+        font-size: 1.5rem;
+    }
+
+    .Column_1, .Column_2 {
+        width: 50%;
+    }
+
+    #Slideshow_Container {
+        width: 50%;
     }
 }
 
-@media screen and (min-width: 661px) and (max-width: 799px) {
-    p p2 {
-        font-size: 2.75vw;
+@media (min-width: 1025px) {
+    p, p2 {
+        font-size: 2rem;
+    }
+
+    .Column_1, .Column_2 {
+        width: 50%;
+    }
+
+    #Slideshow_Container {
+        width: 20em;
     }
 }
 
-@media screen and (min-width: 800px) and (max-width: 924px) {
-    p p2 {
-        font-size: 2.5vw;
-    }
-}
-
-@media screen and (min-width: 925px) and (max-width: 1050px) {
-    p p2 {
-        font-size: 2.25vw;
-    }
-}
-
-@media screen and (min-width: 1051px) and (max-width: 1310px) {
-    p p2 {
-        font-size: 2vw;
-    } 
-}
-
-@media screen and (min-width: 1311px) and (max-width: 1535px) {
-    p {
-        font-size: 1.75vw;
-    }
-}
-
-@media screen and (min-width: 1536px) and (max-width: 2269px) {
-    p {
-        font-size: 1.5vw;
-    }
-}
-
-@media screen and (min-width: 2270px) {
-    p {
-        font-size: 1.35vw;
-    }
-}
 
 /*Media rule for navbar links for different screen sizes*/
 /* Screens 1080px and smaller will display navbar links equally distributed */
@@ -394,6 +384,13 @@ button:hover, .form-container .btn:hover {
         font-size: 4.5vw;
     }
 } */
+
+@media (min-width: 768px) {
+    .name-container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
 
 /* Media rules to increase the size of the columns for larger screens */
 @media screen and (min-width: 100px) {
@@ -422,8 +419,10 @@ button:hover, .form-container .btn:hover {
     flex-direction: row;
     position: relative;
     align-items: center;
+    text-align: center;
     justify-content: space-between;
     background: none;
+    padding: 2em;
 }
 
 #nameicon {
@@ -435,24 +434,26 @@ button:hover, .form-container .btn:hover {
     /* margin: 0; */
     /* top: 50em; */
     /* left: 50em; */
-    max-width: 40rem;
+    max-width: 65%;
+    height: auto;
     min-height: 1rem;
 }
 
 #monty {
     font-family: 'Tw Cen MT';
-    font-size: .7em;
+    font-size: .8rem;
     float: right;
     color: #707070;
     font-weight: bold;
     text-align: right;
     /* padding: 50px; */
-    white-space: nowrap;  
+    white-space: normal;  
     margin: 0;
-    position: relative;
-    right:0%
+    position: absolute;
+    right:3%
 }
 
 #cont {
     text-decoration: underline;
 }
+
