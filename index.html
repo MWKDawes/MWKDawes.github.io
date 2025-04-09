@@ -1,129 +1,563 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Mike Dawes | Portfolio</title>
-        <link rel="stylesheet" type="text/css" href="./CSS/Portfolio_css.css">
-        <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/zelda-dx">
-        <link href="https://fonts.cdnfonts.com/css/mairon" rel="stylesheet">
-    </head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.cdnfonts.com/css/berlin-sans-fb-demi" rel="stylesheet">
+                
+    <title>Michael Dawes - UI/UX</title>
 
-    <!--Body-->
-    <body>
-        <div class="name-container">
-            <div class="NameLogo"><img src="Images/NameLogo.png" id="nameicon" alt="Mike Dawes"></div>
-            <div class="Quote" id="monty">
-                <q>The universe itself keeps on expanding and expanding<br>in all of the directions it can whizz.</q>
-                    <br>-Eric Idle (Monty Python)
-                </div>
-        </div>
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/berlin-sans-fb-demi');
 
-        <!--About-->
-        <div class="Row" id="About">
-            <!--Left Column-->
-            <div class="Column_2">
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden; 
+        }
+
+        /* Scrollable Container */
+        #scroll-container {
+            scroll-snap-type: y mandatory;
+            overflow-y: scroll;
+            height: 100vh;
+            width: 100vw;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        #scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        #scroll-container {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+
+        /* Full Page Sections */
+        .page {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            scroll-snap-align: start;
+        }
+
+        /* Page 1: Animation */
+        #animation-container {
+            background: linear-gradient(to right, #4aa6da, #0074b4); 
+        }
+
+        /* Page 2: Main Content */
+        #main-content { 
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 0.8fr 1.2fr; 
+            gap: 20px;
+            padding: 20px;
+            height: 100vh;
+            width: 100vw;
+            box-sizing: border-box;
+            background: url('/WebsiteComponents/Backgrounds/About_Nav Background.png') no-repeat center center;
+            background-size: 100% 100%;
+            background-attachment: scroll;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #links-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            background: url('/WebsiteComponents/Backgrounds/LinksBackground.png') no-repeat center center;
+            background-size: 100% 100%;
+            background-attachment: scroll;
+            position: relative;
+            overflow: hidden;
+        }
+        
+
+        /* Top Three Areas */
+        .top-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px; 
+            cursor: pointer;
+            transition: background 0.3s ease;
+            border-radius: 10px;
+            max-width: 100%;
+            max-height: 100%;
+            overflow: hidden;
+            margin-top: 20px; 
+        }
+
+        .top-section img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            width: 75%; 
+        }
+
+        /* Bottom Two Areas */
+        .bottom-container {
+            display: flex;
+            gap: 20px;
+            grid-column: span 3;
+            height: 100%;
+            overflow: hidden;
+            margin-top: 20px; 
+        }
+
+        .bottom-section {
+            flex: 1;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .bottom-section img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .bottom-section h1, .bottom-section h3 {
+            margin: 0;
+            padding: 10px;
+            max-width: 100%;
+            word-wrap: break-word;
+        }
+
+        #bottom-right {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            font-family: 'Berlin Sans FB Demi', sans-serif;
+            color: #ffd369;
+            position: relative;
+            height: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .fade-text {
+            position: absolute;
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .fade-text.hidden {
+            opacity: 0;
+        }
+
+        #bottom-right h1 {
+            margin: 0;
+            padding: 10px;
+            max-width: 100%;
+            word-wrap: break-word;
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            line-height: 1.2;
+        }
+
+        #bottom-right h3 {
+            margin: 0;
+            padding: 10px;
+            max-width: 100%;
+            word-wrap: break-word;
+            font-size: clamp(0.8rem, 1.5vw, 1.2rem);
+            line-height: 1.4;
+            max-height: 70%;
+            overflow-y: auto;
+        }
+
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        #bottom-right h3::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        #bottom-right h3 {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+
+        /* Styling for Clickable Areas */
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .link-icons-container {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            width: 100%;
+            padding: clamp(10px, 3vw, 20px);
+        }
+
+        .link-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .link-icon:hover {
+            transform: scale(1.05);
+        }
+
+        .link-icon img {
+            width: 100%;
+            height: auto;
+        }
+
+        .link-icon.side {
+            width: clamp(150px, 20vw, 180px);
+        }
+
+        .link-icon.middle {
+            width: clamp(180px, 25vw, 220px);
+            transform-origin: top center;
+            animation: none;
+        }
+
+        .link-icon.middle.animate {
+            animation: swing 1.5s ease-in-out forwards;
+        }
+
+        .link-icon span {
+            color: #ffd369;
+            font-family: 'Berlin Sans FB Demi', sans-serif;
+            margin-top: clamp(5px, 2vw, 10px);
+            font-size: clamp(0.8rem, 1.5vw, 1.2em);
+        }
+
+        @keyframes swing {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(5deg); }
+            75% { transform: rotate(-2deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        /* Fourth page styling */
+        #projects-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/WebsiteComponents/Backgrounds/UtilityConstBack2.png') no-repeat center center;
+            background-size: cover;
+            z-index: 1;
+        }
+
+        .border-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/WebsiteComponents/Backgrounds/UtilityConstBack.png') no-repeat center center;
+            background-size: 100% 100%;
+            z-index: 2;
+        }
+
+        /* Corner text styling */
+        .corner-text {
+            position: absolute;
+            font-family: 'Berlin Sans FB Demi', sans-serif;
+            color: #ffd369;
+            z-index: 3;
+            max-width: 45%;
+            padding: 0 20px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 45%;
+        }
+
+        .corner-text.left {
+            left: 0;
+            top: 40px;
+            text-align: center;
+            font-size: clamp(2.2rem, 4vw, 3.2rem);
+            text-decoration: underline;
+            text-underline-offset: 8px;
+            padding-left: 40px;
+        }
+
+        .corner-text.right {
+            right: 0;
+            top: 45px;
+            text-align: center;
+            font-size: clamp(0.8rem, 1.5vw, 1.2rem);
+            padding-right: 40px;
+        }
+
+        /* Ensure content stays above both backgrounds */
+        .projects-content {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Add this to your CSS section */
+        .carousel-indicator {
+            position: fixed;
+            bottom: 40px;
+            left: 100px;
+            transform: none;
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .carousel-indicator.visible {
+            opacity: 1;
+        }
+
+        .indicator-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 211, 105, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator-dot.active {
+            background-color: #ffd369;
+            transform: scale(1.2);
+        }
+
+        /* Add this to your CSS section */
+        .background-link {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            cursor: pointer;
+        }
+
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
+</head>
+
+<body>
+    <!-- Scrollable Wrapper -->
+    <div id="scroll-container">
+        <!-- Page 1: Animation -->
+        <div class="page" id="animation-container"></div>
+
+        <!-- Page 2: Main Content -->
+        <div class="page" id="main-content">
+            <!-- Top Three Sections -->
+            <a href="#section1" class="top-section" id="left-box"><img src="WebsiteComponents\Page 1 Icons\LinksFlair.png" alt="Social Links" width="75%"></a>
+            <div class="top-section" id="middle-image">
+                <img src="WebsiteComponents\Page 1 Icons\AboutMeFlair.png" alt="Image" width="75%">
             </div>
-            <!--Right Column-->
-            <div class="Column_1"  id="TRCol">
-                <p id="TRTex">
-                    <p2>I am a newly trained UI/UX developer and have a passion for graphic design and coding.</p2>
-                    <br>
-                    <br>I am a graduate of <a href="https://www.learncodinganywhere.com" target="_blank">The Tech Academy</a>'s UI/UX Design Boot Camp, along with graduating classes through Udemy, Coursera, and Code in Place. I am trained and experienced in HTML, CSS, JavaScript, and more.
-                </p>
-            </div>
-        </div>
+            <a href="#section2" class="top-section" id="right-box"><img src="WebsiteComponents\Page 1 Icons\ProjectsFlair.png" alt="Projects" width="75%"></a>
 
-        <!--Github Section-->
-        <div class="Row" id="Github">
-            <!--Left Column-->
-            <div class="Column_1" id="BLCol">
-                <p id="BLTex">You can view my various coding projects by checking out my profiles!
-                    <br><br>
-                    <a href="https://github.com/MWKDawes" target="_blank"><img src="./Images/Github.png" alt="Github Logo" id="icon"></a>&nbsp
-                    <a href="https://dribbble.com/MWKDawes" target="_blank"><img src="./Images/Dribbble.png" alt="Dribbble Logo" id="icon"></a>&nbsp &nbsp
-                    <a href="https://www.linkedin.com/in/mikewkdawes/" target="_blank"><img src="./Images/LinkedIn.png" alt="Linked In Logo" id="icon"></a>
-                    <br><br>
-                    ...or take a look at my résumé!
-                    <br><br>
-                    <a href="https://drive.google.com/file/d/1962UHANgM3cEvcRtJw6b0CuvD37Q9s7z/view?usp=sharing" target="_blank"><img src="./Images/resume.png" alt="Resume Logo" id="icon"></a>
-                </p>
-            </div>
-
-            <!--Right column-->
-            <div class="Column_2">
-                <!--Slideshow section-->
-                <div id="Slideshow">
-                    <div id="Slideshow_Background">
-                        <div id="Slideshow_Container">
-                            <!--Slide 1-->
-                            <div class="mySlides fade">
-                                <img class="Slideshow_Images" src="./Images/PersonalPhoto.jpg" alt="Picture of myself and my Nana">
-                                <div class="text">I'm here to help get your project to the next level!</div>
-                            </div>
-                            <!--Slide 2-->
-                            <div class="mySlides fade">
-                                <img class="Slideshow_Images" src="./Images/HTML.png" alt="Icon for HTML">
-                                <div class="text">I'm a UI/UX developer, trained in many languages including: HTML</div>
-                            </div>
-                            <!--Slide 3-->
-                            <div class="mySlides fade">
-                                <img class="Slideshow_Images" src="./Images/CSS.png" alt="Icon for CSS">
-                                <div class="text">CSS</div>
-                            </div>
-                            <!--Slide 4-->
-                            <div class="mySlides fade">
-                                <img class="Slideshow_Images" src="./Images/JS.png" alt="Icon for JS">
-                                <div class="text">Javascript</div>
-                            </div>
-                            <!--Slide 5-->
-                            <div class="mySlides fade">
-                                <img class="Slideshow_Images" src="./Images/Python.png" alt="Icon for Python">
-                                <div class="text">Python</div>
-                            </div>
-                            <!--Slide 6-->
-                            <div class="mySlides fade">
-                                <img class="Slideshow_Images" src="./Images/Java.png" alt="Icons for Java">
-                                <div class="text">Java</div>
-                            </div>
-                            <!--Slide 7-->
-                            <div class="mySlides fade">
-                                <img class="Slideshow_Images" src="./Images/CSharp.png" alt="C# icon">
-                                <div class="text">Have taken classes in C# for game development, and more!</div>
-                            </div>
-                            <!--Slide 8-->
-                            <div class="mySlides fade">
-                                <img class="Slideshow_Images" src="./Images/Computer_writing.jpg" alt="Writing on Computer image">
-                                <div class="text" id="cont"><a class="white-text contact" onclick="openForm()">Feel free to contact me for any questions!</a></div>
-                            </div>
-                            <!--Previous and next buttons-->
-                            <a class="Previous" onclick="plusSlides(-1)">&#10094;</a>
-                            <a class="Next" onclick="plusSlides(1)">&#10095;</a>
-                        </div>
-                        <br>
+            <!-- Bottom Two Sections -->
+            <div class="bottom-container">
+                <div class="bottom-section" id="bottom-left"><img src="WebsiteComponents\Page 1 Icons\NameWarp.png" alt="Projects" width="50%"></div>
+                <div class="bottom-section" id="bottom-right">
+                    <div class="fade-text" id="intro-text">
+                        <h1>ENLIVENING YOUR MIND PALACE WITH GREAT DESIGN</h1>
+                        <h3>I AM DIVING INTO THE UI/UX SCENE AND AM READY TO MAKE A SPLASH! I HAVE COMPLETED AN HECC APPROVED UI/UX DESIGN AND DEVELOPMENT COURSE, TAKEN MANY ONLINE CLASSES TEACHING ME DIFFERENT LANGUAGES RANGING FROM JAVA TO C#, AND AM READY TO START A CAREER THAT CAN BRING MY ARTISTIC SIDE AND CODING SKILLS TOGETHER!</h3>
+                    </div>
+                    <div class="fade-text hidden" id="about-text">
+                        <h1>ABOUT ME</h1>
+                        <h3>I have always been about following my passions, I have always been a creative person and quick learner, and I have always had 
+                        an interest in coding. For the majority of my working career I have worked as a Licensed Veterinary Technician, a career that fulfilled 
+                        my desire to learn and passion to help animals, but I always knew it was not a long term profession. Around the beginning of the pandemic, I began taking 
+                        various online classes to help me satisfy my craving to learn what makes a computer tick. Since then, I've completed Stanford's Code In Place course and multiple 
+                        classes through coursera and Udemy covering Python, C# use for gaming, and Javascript. It wasn't until last year that I decided to finally make the leap and 
+                        change careers to something that I can see myself doing for the rest of my life. I began discussing with friends and family about the doors that learning coding 
+                        can open for you and discovered UI/UX Design, something that stood out to my creative and artistic side. It was then I began working as an LVT part time and 
+                        competed a boot camp through The Tech Academy, where I learned the ins and outs of wireframing, design principles, prototyping, etc. I was previously one of the 
+                        website managers of The Niles Dog Show, which helped boost my skills in Github and managing shared code. I am eager to join in on your next project and help 
+                        bring your ideas to life!</h3>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!--Contact-->
-        <div class="contact">
-            <button onclick="openForm()" class="Pop_Up_Button">CONTACT</button>
-            <div class="form-popup" id="myForm">
-                <form action="https://formspree.io/f/mgegwnde" method="post" class="form-container"> 
-                    <h1>Questions? Comments? Let me know!</h1>
-                    <label>Name:</label>
-                        <input type="text" placeholder="Name" name="name" required>
-                    <label>Email:</label>
-                        <input type="text" id="Email" name="Email" placeholder="Email">
-                    <label>Message:</label>
-                        <input type="text" id="Message" name="Message" placeholder="Can't wait to hear from you!">
-                    
-                    <button type="submit" class="btn">SUBMIT</button>
-                    <button type="button" class="btn cancel" onclick="closeForm()">CLOSE</button>
-                </form>
+        <!-- Page 3: Links -->
+        <div class="page" id="links-container">
+            <div class="link-icons-container">
+                <a href="https://github.com/MWKDawes" class="link-icon side" target="_blank">
+                    <img src="WebsiteComponents/Page 2 Icons/GitHubLogo.png" alt="GitHub">
+                </a>
+                <a href="https://www.linkedin.com/in/mikewkdawes" class="link-icon middle" target="_blank">
+                    <img src="WebsiteComponents/Page 2 Icons/LinkedIn.png" alt="LinkedIn">
+                </a>
+                <a href="https://dribbble.com/MWKDawes" class="link-icon side" target="_blank">
+                    <img src="WebsiteComponents/Page 2 Icons/DribbbleLogo.png" alt="Dribbble">
+                </a>
             </div>
         </div>
-        <script src="./JS/main.js"></script>
-    </body>
+
+        <!-- Page 4: Projects -->
+        <div class="page" id="projects-container">
+            <div class="background-image"></div>
+            <div class="border-overlay"></div>
+            <a href="https://dribbble.com/shots/23753071-Utility-Construction-Homepage?utm_source=Clipboard_Shot&utm_campaign=MWKDawes&utm_content=Utility%20Construction%20Homepage&utm_medium=Social_Share&utm_source=Clipboard_Shot&utm_campaign=MWKDawes&utm_content=Utility%20Construction%20Homepage&utm_medium=Social_Share" class="corner-text left" target="_blank">UTILITY CONSTRUCTION</a>
+            <div class="corner-text right">This was a project I underwent as a graduation requirement for my UI/UX course. It was an exercise that I underwent along with fellow graduates where we worked together for a 2 week sprint. I was in charge of creating a website that worked well with the customer's desires and style.</div>
+        </div>
+    </div>
+
+    <div class="carousel-indicator">
+        <div class="indicator-dot active"></div>
+        <div class="indicator-dot"></div>
+        <div class="indicator-dot"></div>
+        <div class="indicator-dot"></div>
+        <div class="indicator-dot"></div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var animationContainer = document.getElementById('animation-container');
+
+            var animation = lottie.loadAnimation({
+                container: animationContainer,
+                renderer: 'canvas', 
+                loop: false,
+                autoplay: true,
+                path: '/WebsiteComponents/JSON/LandingPage.json',
+                rendererSettings: {
+                    preserveAspectRatio: 'xMidYMid meet',
+                    clearCanvas: true,
+                    dpr: window.devicePixelRatio || 1
+                }
+            });
+
+            animation.addEventListener("complete", function () {
+                console.log("Animation finished.");
+            });
+
+            // Add click handler for About Me button
+            const middleImage = document.getElementById('middle-image');
+            const introText = document.getElementById('intro-text');
+            const aboutText = document.getElementById('about-text');
+            let showingIntro = true;
+
+            middleImage.addEventListener('click', function() {
+                if (showingIntro) {
+                    introText.classList.add('hidden');
+                    aboutText.classList.remove('hidden');
+                } else {
+                    introText.classList.remove('hidden');
+                    aboutText.classList.add('hidden');
+                }
+                showingIntro = !showingIntro;
+            });
+        });
+
+        // Add scroll detection for the middle icon
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                } else {
+                    entry.target.classList.remove('animate');
+                }
+            });
+        }, {
+            threshold: 0.5 // Trigger when 50% of the element is visible
+        });
+
+        // Observe the middle icon
+        document.addEventListener('DOMContentLoaded', () => {
+            const middleIcon = document.querySelector('.link-icon.middle');
+            if (middleIcon) {
+                observer.observe(middleIcon);
+            }
+        });
+
+        // Add scroll detection for carousel indicator
+        const carouselObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const isProjectPage = entry.target.id === 'projects-container';
+                    const indicator = document.querySelector('.carousel-indicator');
+                    
+                    // Show/hide indicator based on whether we're on a project page
+                    if (isProjectPage) {
+                        indicator.classList.add('visible');
+                        // Update active dot
+                        document.querySelectorAll('.indicator-dot').forEach(dot => {
+                            dot.classList.remove('active');
+                        });
+                        // Since this is the first project page, activate first dot
+                        document.querySelectorAll('.indicator-dot')[0].classList.add('active');
+                    } else {
+                        indicator.classList.remove('visible');
+                    }
+                }
+            });
+        }, {
+            threshold: 0.5
+        });
+
+        // Observe all pages
+        document.querySelectorAll('.page').forEach(page => {
+            carouselObserver.observe(page);
+        });
+
+        // Add click handler for the background image
+        document.querySelector('#projects-container').addEventListener('click', function(e) {
+            // Only trigger if clicking the background (::before element)
+            if (e.target === this) {
+                window.open('https://dribbble.com/shots/23753071-Utility-Construction-Homepage?utm_source=Clipboard_Shot&utm_campaign=MWKDawes&utm_content=Utility%20Construction%20Homepage&utm_medium=Social_Share&utm_source=Clipboard_Shot&utm_campaign=MWKDawes&utm_content=Utility%20Construction%20Homepage&utm_medium=Social_Share', '_blank');
+            }
+        });
+    </script>
+</body>
 </html>
