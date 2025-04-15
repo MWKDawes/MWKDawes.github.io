@@ -69,6 +69,9 @@
 
         .loading-circle {
             position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             width: 50px;
             height: 50px;
             border: 3px solid rgba(255, 211, 105, 0.3);
@@ -76,15 +79,18 @@
             border-radius: 50%;
             animation: spin 1s linear infinite;
             z-index: 10;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            opacity: 1;
+            transition: opacity 0.3s ease;
         }
 
         .loading-circle.hidden {
-            display: none;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
         }
 
         .lottie-svg {
@@ -512,7 +518,7 @@
         document.addEventListener("DOMContentLoaded", function () {
             var animationContainer = document.getElementById('animation-container');
             
-            // Add loading circle
+            // Create and add loading circle immediately
             const loadingCircle = document.createElement('div');
             loadingCircle.className = 'loading-circle';
             animationContainer.appendChild(loadingCircle);
