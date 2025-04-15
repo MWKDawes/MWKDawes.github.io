@@ -55,7 +55,36 @@
 
         /* Page 1: Animation */
         #animation-container {
-            background: linear-gradient(to right, #4aa6da, #0074b4); 
+            background: linear-gradient(to right, #4aa6da, #0074b4);
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #animation-container::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            border: 3px solid #ffd369;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        #animation-container.loading::before {
+            opacity: 1;
+        }
+
+        @keyframes spin {
+            to { transform: translate(-50%, -50%) rotate(360deg); }
         }
 
         /* Page 2: Main Content */
@@ -433,7 +462,7 @@
         <div class="page" id="links-container">
             <div class="link-icons-container">
                 <a href="https://github.com/MWKDawes" class="link-icon side" target="_blank">
-                    <img src="WebsiteComponents/Page 2 Icons/GitHubLogo.png" alt="GitHub">
+                    <img src="WebsiteComponents/Page 2 Icons/GithubLogo.png" alt="GitHub">
                 </a>
                 <a href="https://www.linkedin.com/in/mikewkdawes" class="link-icon middle" target="_blank">
                     <img src="WebsiteComponents/Page 2 Icons/LinkedIn.png" alt="LinkedIn">
@@ -465,22 +494,42 @@
         document.addEventListener("DOMContentLoaded", function () {
             var animationContainer = document.getElementById('animation-container');
 
-            var animation = lottie.loadAnimation({
-                container: animationContainer,
-                renderer: 'canvas', 
-                loop: false,
-                autoplay: true,
-                path: '/WebsiteComponents/JSON/LandingPage.json',
-                rendererSettings: {
-                    preserveAspectRatio: 'xMidYMid meet',
-                    clearCanvas: true,
-                    dpr: window.devicePixelRatio || 1
-                }
-            });
+            // Preload the animation JSON
+            fetch('/WebsiteComponents/JSON/LandingPage.json')
+                .then(response => response.json())
+                .then(data => {
+                    var animation = lottie.loadAnimation({
+                        container: animationContainer,
+                        renderer: 'canvas',
+                        loop: false,
+                        autoplay: true,
+                        animationData: data,
+                        rendererSettings: {
+                            preserveAspectRatio: 'xMidYMid meet',
+                            clearCanvas: true,
+                            dpr: window.devicePixelRatio || 1,
+                            progressiveLoad: true,
+                            hideOnTransparent: true,
+                            imagePreserveAspectRatio: 'xMidYMid meet'
+                        }
+                    });
 
-            animation.addEventListener("complete", function () {
-                console.log("Animation finished.");
-            });
+                    // Add loading indicator
+                    animationContainer.style.display = 'flex';
+                    animationContainer.style.justifyContent = 'center';
+                    animationContainer.style.alignItems = 'center';
+
+                    animation.addEventListener("DOMLoaded", function () {
+                        console.log("Animation loaded and ready to play");
+                    });
+
+                    animation.addEventListener("complete", function () {
+                        console.log("Animation finished");
+                    });
+                })
+                .catch(error => {
+                    console.error("Error loading animation:", error);
+                });
 
             // Add click handler for About Me button
             const middleImage = document.getElementById('middle-image');
