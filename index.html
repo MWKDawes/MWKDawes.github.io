@@ -446,7 +446,9 @@
     <!-- Scrollable Wrapper -->
     <div id="scroll-container">
         <!-- Page 1: Animation -->
-        <div class="page" id="animation-container"></div>
+        <div class="page" id="animation-container">
+            <div class="loading-circle"></div>
+        </div>
 
         <!-- Page 2: Main Content -->
         <div class="page" id="main-content">
@@ -517,11 +519,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             var animationContainer = document.getElementById('animation-container');
-            
-            // Create and add loading circle immediately
-            const loadingCircle = document.createElement('div');
-            loadingCircle.className = 'loading-circle';
-            animationContainer.appendChild(loadingCircle);
+            var loadingCircle = document.querySelector('.loading-circle');
 
             // Add CSS to prevent flickering
             animationContainer.style.transform = 'translateZ(0)';
