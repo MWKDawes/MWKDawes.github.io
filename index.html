@@ -67,28 +67,24 @@
             will-change: transform;
         }
 
-        #animation-container::before {
-            content: '';
+        .loading-circle {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             width: 50px;
             height: 50px;
-            border: 3px solid #ffd369;
+            border: 3px solid rgba(255, 211, 105, 0.3);
+            border-top: 3px solid #ffd369;
             border-radius: 50%;
-            border-top-color: transparent;
             animation: spin 1s linear infinite;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        #animation-container.loading::before {
-            opacity: 1;
+            z-index: 10;
         }
 
         @keyframes spin {
-            to { transform: translate(-50%, -50%) rotate(360deg); }
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-circle.hidden {
+            display: none;
         }
 
         .lottie-svg {
@@ -513,17 +509,13 @@
     </div>
 
     <script>
-        // Start loading the animation data as early as possible
-        let animationData = null;
-        fetch('/WebsiteComponents/JSON/LandingPage.json')
-            .then(response => response.json())
-            .then(data => {
-                animationData = data;
-            })
-            .catch(error => console.error("Error preloading animation:", error));
-
         document.addEventListener("DOMContentLoaded", function () {
             var animationContainer = document.getElementById('animation-container');
+            
+            // Add loading circle
+            const loadingCircle = document.createElement('div');
+            loadingCircle.className = 'loading-circle';
+            animationContainer.appendChild(loadingCircle);
 
             // Add CSS to prevent flickering
             animationContainer.style.transform = 'translateZ(0)';
@@ -531,58 +523,59 @@
             animationContainer.style.perspective = '1000px';
             animationContainer.style.willChange = 'transform';
 
-            // Show loading state immediately
-            animationContainer.style.display = 'flex';
-            animationContainer.style.justifyContent = 'center';
-            animationContainer.style.alignItems = 'center';
-
-            function initAnimation() {
-                if (!animationData) {
-                    setTimeout(initAnimation, 100);
-                    return;
-                }
-
-                var animation = lottie.loadAnimation({
-                    container: animationContainer,
-                    renderer: 'svg',
-                    loop: false,
-                    autoplay: true,
-                    animationData: animationData,
-                    rendererSettings: {
-                        preserveAspectRatio: 'xMidYMid meet',
-                        clearCanvas: true,
-                        progressiveLoad: true,
-                        hideOnTransparent: true,
-                        imagePreserveAspectRatio: 'xMidYMid meet',
-                        className: 'lottie-svg',
-                        filterSize: {
-                            width: '100%',
-                            height: '100%',
-                            x: '0%',
-                            y: '0%'
+            // Preload the animation JSON
+            fetch('/WebsiteComponents/JSON/LandingPage.json')
+                .then(response => response.json())
+                .then(data => {
+                    var animation = lottie.loadAnimation({
+                        container: animationContainer,
+                        renderer: 'svg',
+                        loop: false,
+                        autoplay: true,
+                        animationData: data,
+                        rendererSettings: {
+                            preserveAspectRatio: 'xMidYMid meet',
+                            clearCanvas: true,
+                            progressiveLoad: true,
+                            hideOnTransparent: true,
+                            imagePreserveAspectRatio: 'xMidYMid meet',
+                            className: 'lottie-svg',
+                            filterSize: {
+                                width: '100%',
+                                height: '100%',
+                                x: '0%',
+                                y: '0%'
+                            }
                         }
+                    });
+
+                    // Add loading indicator
+                    animationContainer.style.display = 'flex';
+                    animationContainer.style.justifyContent = 'center';
+                    animationContainer.style.alignItems = 'center';
+
+                    // Force hardware acceleration
+                    const svgElement = animationContainer.querySelector('svg');
+                    if (svgElement) {
+                        svgElement.style.transform = 'translateZ(0)';
+                        svgElement.style.backfaceVisibility = 'hidden';
+                        svgElement.style.perspective = '1000px';
+                        svgElement.style.willChange = 'transform';
                     }
+
+                    animation.addEventListener("DOMLoaded", function () {
+                        console.log("Animation loaded and ready to play");
+                        loadingCircle.classList.add('hidden');
+                    });
+
+                    animation.addEventListener("complete", function () {
+                        console.log("Animation finished");
+                    });
+                })
+                .catch(error => {
+                    console.error("Error loading animation:", error);
+                    loadingCircle.classList.add('hidden');
                 });
-
-                // Force hardware acceleration on SVG element
-                const svgElement = animationContainer.querySelector('svg');
-                if (svgElement) {
-                    svgElement.style.transform = 'translateZ(0)';
-                    svgElement.style.backfaceVisibility = 'hidden';
-                    svgElement.style.perspective = '1000px';
-                    svgElement.style.willChange = 'transform';
-                }
-
-                animation.addEventListener("DOMLoaded", function () {
-                    console.log("Animation loaded and ready to play");
-                });
-
-                animation.addEventListener("complete", function () {
-                    console.log("Animation finished");
-                });
-            }
-
-            initAnimation();
 
             // Add click handler for About Me button
             const middleImage = document.getElementById('middle-image');
