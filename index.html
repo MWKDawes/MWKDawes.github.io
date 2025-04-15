@@ -30,6 +30,11 @@
             width: 100vw;
             scroll-behavior: smooth;
             overflow-x: hidden;
+            visibility: hidden;
+        }
+
+        #scroll-container.visible {
+            visibility: visible;
         }
 
         /* Hide scrollbar for Chrome, Safari and Opera */
@@ -78,12 +83,14 @@
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            transition: opacity 0.3s ease;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
         }
 
         #loading-overlay.hidden {
             opacity: 0;
-            pointer-events: none;
+            visibility: hidden;
         }
 
         .loading-circle {
@@ -450,11 +457,6 @@
 </head>
 
 <body>
-    <!-- Loading Overlay -->
-    <div id="loading-overlay">
-        <div class="loading-circle"></div>
-    </div>
-
     <!-- Scrollable Wrapper -->
     <div id="scroll-container">
         <!-- Page 1: Animation -->
@@ -529,8 +531,9 @@
     </div>
 
     <script>
-        console.log('Script started');
+        console.log('Main script started');
         const loadingOverlay = document.getElementById('loading-overlay');
+        const scrollContainer = document.getElementById('scroll-container');
         console.log('Loading overlay element:', loadingOverlay);
 
         document.addEventListener("DOMContentLoaded", function () {
@@ -574,6 +577,7 @@
                     animation.addEventListener("DOMLoaded", function () {
                         console.log("Animation loaded and ready to play");
                         loadingOverlay.classList.add('hidden');
+                        scrollContainer.classList.add('visible');
                     });
 
                     animation.addEventListener("complete", function () {
@@ -583,6 +587,7 @@
                 .catch(error => {
                     console.error("Error loading animation:", error);
                     loadingOverlay.classList.add('hidden');
+                    scrollContainer.classList.add('visible');
                 });
 
             // Add click handler for About Me button
