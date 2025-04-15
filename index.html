@@ -513,8 +513,56 @@
     </div>
 
     <script>
+        // Preload the animation data as soon as possible
+        let animationData = null;
+        fetch('/WebsiteComponents/JSON/LandingPage.json')
+            .then(response => response.json())
+            .then(data => {
+                animationData = data;
+            })
+            .catch(error => console.error("Error preloading animation:", error));
+
         document.addEventListener("DOMContentLoaded", function () {
             var animationContainer = document.getElementById('animation-container');
+
+            // Show loading state
+            animationContainer.style.display = 'flex';
+            animationContainer.style.justifyContent = 'center';
+            animationContainer.style.alignItems = 'center';
+
+            // Initialize animation when data is ready
+            function initAnimation() {
+                if (!animationData) {
+                    setTimeout(initAnimation, 100);
+                    return;
+                }
+
+                var animation = lottie.loadAnimation({
+                    container: animationContainer,
+                    renderer: 'canvas',
+                    loop: false,
+                    autoplay: true,
+                    animationData: animationData,
+                    rendererSettings: {
+                        preserveAspectRatio: 'xMidYMid meet',
+                        clearCanvas: true,
+                        dpr: window.devicePixelRatio || 1,
+                        progressiveLoad: true,
+                        hideOnTransparent: true,
+                        imagePreserveAspectRatio: 'xMidYMid meet'
+                    }
+                });
+
+                animation.addEventListener("DOMLoaded", function () {
+                    console.log("Animation loaded and ready to play");
+                });
+
+                animation.addEventListener("complete", function () {
+                    console.log("Animation finished");
+                });
+            }
+
+            initAnimation();
 
             // Add CSS to prevent flickering
             animationContainer.style.transform = 'translateZ(0)';
@@ -522,57 +570,14 @@
             animationContainer.style.perspective = '1000px';
             animationContainer.style.willChange = 'transform';
 
-            // Preload the animation JSON
-            fetch('/WebsiteComponents/JSON/LandingPage.json')
-                .then(response => response.json())
-                .then(data => {
-                    var animation = lottie.loadAnimation({
-                        container: animationContainer,
-                        renderer: 'svg',
-                        loop: false,
-                        autoplay: true,
-                        animationData: data,
-                        rendererSettings: {
-                            preserveAspectRatio: 'xMidYMid meet',
-                            clearCanvas: true,
-                            progressiveLoad: true,
-                            hideOnTransparent: true,
-                            imagePreserveAspectRatio: 'xMidYMid meet',
-                            className: 'lottie-svg',
-                            filterSize: {
-                                width: '100%',
-                                height: '100%',
-                                x: '0%',
-                                y: '0%'
-                            }
-                        }
-                    });
-
-                    // Add loading indicator
-                    animationContainer.style.display = 'flex';
-                    animationContainer.style.justifyContent = 'center';
-                    animationContainer.style.alignItems = 'center';
-
-                    // Force hardware acceleration
-                    const svgElement = animationContainer.querySelector('svg');
-                    if (svgElement) {
-                        svgElement.style.transform = 'translateZ(0)';
-                        svgElement.style.backfaceVisibility = 'hidden';
-                        svgElement.style.perspective = '1000px';
-                        svgElement.style.willChange = 'transform';
-                    }
-
-                    animation.addEventListener("DOMLoaded", function () {
-                        console.log("Animation loaded and ready to play");
-                    });
-
-                    animation.addEventListener("complete", function () {
-                        console.log("Animation finished");
-                    });
-                })
-                .catch(error => {
-                    console.error("Error loading animation:", error);
-                });
+            // Force hardware acceleration
+            const svgElement = animationContainer.querySelector('svg');
+            if (svgElement) {
+                svgElement.style.transform = 'translateZ(0)';
+                svgElement.style.backfaceVisibility = 'hidden';
+                svgElement.style.perspective = '1000px';
+                svgElement.style.willChange = 'transform';
+            }
 
             // Add click handler for About Me button
             const middleImage = document.getElementById('middle-image');
