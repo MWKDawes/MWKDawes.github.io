@@ -61,6 +61,10 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            perspective: 1000px;
+            will-change: transform;
         }
 
         #animation-container::before {
@@ -85,6 +89,24 @@
 
         @keyframes spin {
             to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .lottie-svg {
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            perspective: 1000px;
+            will-change: transform;
+            shape-rendering: geometricPrecision;
+            text-rendering: geometricPrecision;
+        }
+
+        #animation-container svg {
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            perspective: 1000px;
+            will-change: transform;
+            shape-rendering: geometricPrecision;
+            text-rendering: geometricPrecision;
         }
 
         /* Page 2: Main Content */
@@ -494,23 +516,35 @@
         document.addEventListener("DOMContentLoaded", function () {
             var animationContainer = document.getElementById('animation-container');
 
+            // Add CSS to prevent flickering
+            animationContainer.style.transform = 'translateZ(0)';
+            animationContainer.style.backfaceVisibility = 'hidden';
+            animationContainer.style.perspective = '1000px';
+            animationContainer.style.willChange = 'transform';
+
             // Preload the animation JSON
             fetch('/WebsiteComponents/JSON/LandingPage.json')
                 .then(response => response.json())
                 .then(data => {
                     var animation = lottie.loadAnimation({
                         container: animationContainer,
-                        renderer: 'canvas',
+                        renderer: 'svg',
                         loop: false,
                         autoplay: true,
                         animationData: data,
                         rendererSettings: {
                             preserveAspectRatio: 'xMidYMid meet',
                             clearCanvas: true,
-                            dpr: window.devicePixelRatio || 1,
                             progressiveLoad: true,
                             hideOnTransparent: true,
-                            imagePreserveAspectRatio: 'xMidYMid meet'
+                            imagePreserveAspectRatio: 'xMidYMid meet',
+                            className: 'lottie-svg',
+                            filterSize: {
+                                width: '100%',
+                                height: '100%',
+                                x: '0%',
+                                y: '0%'
+                            }
                         }
                     });
 
@@ -518,6 +552,15 @@
                     animationContainer.style.display = 'flex';
                     animationContainer.style.justifyContent = 'center';
                     animationContainer.style.alignItems = 'center';
+
+                    // Force hardware acceleration
+                    const svgElement = animationContainer.querySelector('svg');
+                    if (svgElement) {
+                        svgElement.style.transform = 'translateZ(0)';
+                        svgElement.style.backfaceVisibility = 'hidden';
+                        svgElement.style.perspective = '1000px';
+                        svgElement.style.willChange = 'transform';
+                    }
 
                     animation.addEventListener("DOMLoaded", function () {
                         console.log("Animation loaded and ready to play");
