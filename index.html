@@ -246,15 +246,16 @@
         .link-icon img {
             width: 100%;
             height: auto;
-            max-width: 150px;
+            min-width: 120px;
+            max-width: 200px;
         }
 
         .link-icon.side {
-            width: clamp(150px, 20vw, 180px);
+            width: clamp(180px, 25vw, 250px);
         }
 
         .link-icon.middle {
-            width: clamp(180px, 25vw, 220px);
+            width: clamp(200px, 30vw, 280px);
             transform-origin: top center;
             animation: none;
         }
