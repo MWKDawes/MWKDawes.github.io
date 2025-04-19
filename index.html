@@ -5,82 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.cdnfonts.com/css/berlin-sans-fb-demi" rel="stylesheet">
     <link rel="stylesheet" href="./styles.css">
-    <title>Michael Dawes - UI/UX</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
+    <title>My Portfolio</title>
 </head>
 
 <body>
-    <!-- Scrollable Wrapper -->
     <div id="scroll-container">
         <!-- Page 1: Animation -->
-        <div class="page" id="animation-container">
-            <div class="loading-state">
+        <section id="animation-container" class="page">
+            <div class="content">
                 <h1>Welcome to My Portfolio</h1>
-                <p>Loading animation...</p>
+                <p>Scroll down to explore</p>
             </div>
-        </div>
+        </section>
 
         <!-- Page 2: Main Content -->
-        <div class="page" id="main-content">
-            <!-- Top Three Sections -->
-            <a href="#links-container" class="top-section" id="left-box"><img src="./WebsiteComponents/Page1Icons/LinksFlair.png" alt="Social Links" width="75%"></a>
-            <div class="top-section" id="middle-image">
-                <img src="./WebsiteComponents/Page1Icons/AboutMeFlair.png" alt="Image" width="75%">
+        <section id="main-content" class="page">
+            <div class="top-section">
+                <a href="#links-container" class="button">Links</a>
+                <a href="#projects-container" class="button">Projects</a>
             </div>
-            <a href="#projects-container" class="top-section" id="right-box"><img src="./WebsiteComponents/Page1Icons/ProjectsFlair.png" alt="Projects" width="75%"></a>
-
-            <!-- Bottom Two Sections -->
-            <div class="bottom-container">
-                <div class="bottom-section" id="bottom-left"><img src="./WebsiteComponents/Page1Icons/NameWarp.png" alt="Projects" width="50%"></div>
-                <div class="bottom-section" id="bottom-right">
-                    <div class="fade-text" id="intro-text">
-                        <h1>ENLIVENING YOUR MIND PALACE WITH GREAT DESIGN</h1>
-                        <h3>I AM DIVING INTO THE UI/UX SCENE AND AM READY TO MAKE A SPLASH! I HAVE COMPLETED AN HECC APPROVED UI/UX DESIGN AND DEVELOPMENT COURSE, TAKEN MANY ONLINE CLASSES TEACHING ME DIFFERENT LANGUAGES RANGING FROM JAVA TO C#, AND AM READY TO START A CAREER THAT CAN BRING MY ARTISTIC SIDE AND CODING SKILLS TOGETHER!</h3>
+            <div class="bottom-section">
+                <div id="about-me">
+                    <div id="introduction">
+                        <h2>Introduction</h2>
+                        <p>Click to learn more about me</p>
                     </div>
-                    <div class="fade-text hidden" id="about-text">
-                        <h1>ABOUT ME</h1>
-                        <h3>I have always been about following my passions, I have always been a creative person and quick learner, and I have always had 
-                        an interest in coding. For the majority of my working career I have worked as a Licensed Veterinary Technician, a career that fulfilled 
-                        my desire to learn and passion to help animals, but I always knew it was not a long term profession. Around the beginning of the pandemic, I began taking 
-                        various online classes to help me satisfy my craving to learn what makes a computer tick. Since then, I've completed Stanford's Code In Place course and multiple 
-                        classes through coursera and Udemy covering Python, C# use for gaming, and Javascript. It wasn't until last year that I decided to finally make the leap and 
-                        change careers to something that I can see myself doing for the rest of my life. I began discussing with friends and family about the doors that learning coding 
-                        can open for you and discovered UI/UX Design, something that stood out to my creative and artistic side. It was then I began working as an LVT part time and 
-                        competed a boot camp through The Tech Academy, where I learned the ins and outs of wireframing, design principles, prototyping, etc. I was previously one of the 
-                        website managers of The Niles Dog Show, which helped boost my skills in Github and managing shared code. I am eager to join in on your next project and help 
-                        bring your ideas to life!</h3>
+                    <div id="about" class="hidden">
+                        <h2>About Me</h2>
+                        <p>Your about me content here</p>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- Page 3: Links -->
-        <div class="page" id="links-container">
-            <div class="link-icons-container">
-                <a href="https://www.github.com/MWKDawes" class="link-icon side" target="_blank">
-                    <img src="./WebsiteComponents/Page2Icons/GHLogo.png" alt="GitHub">
-                </a>
-                <a href="https://www.linkedin.com/in/mikewkdawes" class="link-icon middle" target="_blank">
-                    <img src="./WebsiteComponents/Page2Icons/LinkedIn.png" alt="LinkedIn">
-                </a>
-                <a href="https://dribbble.com/MWKDawes" class="link-icon side" target="_blank">
-                    <img src="./WebsiteComponents/Page2Icons/DribbbleLogo.png" alt="Dribbble">
-                </a>
+        <section id="links-container" class="page">
+            <div class="content">
+                <h2>Links</h2>
+                <div class="links-grid">
+                    <!-- Add your links here -->
+                </div>
             </div>
-        </div>
+        </section>
 
         <!-- Page 4: Projects -->
-        <div class="page" id="projects-container">
-            <div class="background-image"></div>
-            <div class="border-overlay"></div>
-            <a href="https://dribbble.com/shots/23753071-Utility-Construction-Homepage?utm_source=Clipboard_Shot&utm_campaign=MWKDawes&utm_content=Utility%20Construction%20Homepage&utm_medium=Social_Share&utm_source=Clipboard_Shot&utm_campaign=MWKDawes&utm_content=Utility%20Construction%20Homepage&utm_medium=Social_Share" class="corner-text left" target="_blank">UTILITY CONSTRUCTION</a>
-            <div class="corner-text right">This was a project I underwent as a graduation requirement for my UI/UX course. It was an exercise that I underwent along with fellow graduates where we worked together for a 2 week sprint. I was in charge of creating a website that worked well with the customer's desires and style.</div>
-        </div>
+        <section id="projects-container" class="page">
+            <div class="content">
+                <h2>Projects</h2>
+                <div class="projects-grid">
+                    <!-- Add your projects here -->
+                </div>
+            </div>
+        </section>
     </div>
 
+    <!-- Carousel Indicator -->
     <div class="carousel-indicator">
         <div class="indicator-dot active"></div>
-        <div class="indicator-dot"></div>
         <div class="indicator-dot"></div>
         <div class="indicator-dot"></div>
         <div class="indicator-dot"></div>

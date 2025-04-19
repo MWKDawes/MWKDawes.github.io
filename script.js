@@ -132,4 +132,51 @@ document.querySelector('#projects-container').addEventListener('click', function
     if (e.target === this) {
         window.open('https://dribbble.com/shots/23753071-Utility-Construction-Homepage?utm_source=Clipboard_Shot&utm_campaign=MWKDawes&utm_content=Utility%20Construction%20Homepage&utm_medium=Social_Share&utm_source=Clipboard_Shot&utm_campaign=MWKDawes&utm_content=Utility%20Construction%20Homepage&utm_medium=Social_Share', '_blank');
     }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Get all sections
+    const sections = document.querySelectorAll('.page');
+    const indicatorDots = document.querySelectorAll('.indicator-dot');
+    
+    // Function to update active section
+    function updateActiveSection() {
+        const scrollPosition = window.scrollY;
+        const windowHeight = window.innerHeight;
+        
+        sections.forEach((section, index) => {
+            const sectionTop = section.offsetTop;
+            const sectionBottom = sectionTop + section.offsetHeight;
+            
+            if (scrollPosition >= sectionTop - windowHeight/2 && scrollPosition < sectionBottom - windowHeight/2) {
+                indicatorDots[index].classList.add('active');
+            } else {
+                indicatorDots[index].classList.remove('active');
+            }
+        });
+    }
+    
+    // Update active section on scroll
+    window.addEventListener('scroll', updateActiveSection);
+    
+    // Update active section on load
+    updateActiveSection();
+    
+    // Add click event listeners to indicator dots
+    indicatorDots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            sections[index].scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+    
+    // Add click event listener to about me section
+    const aboutMe = document.getElementById('about-me');
+    if (aboutMe) {
+        aboutMe.addEventListener('click', function() {
+            const hiddenContent = this.querySelector('.hidden');
+            if (hiddenContent) {
+                hiddenContent.classList.toggle('hidden');
+            }
+        });
+    }
 }); 
