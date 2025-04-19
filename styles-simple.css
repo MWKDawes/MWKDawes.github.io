@@ -1,0 +1,130 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    font-family: 'Berlin Sans FB Demi', sans-serif;
+}
+
+#scroll-container {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100vh;
+    width: 100vw;
+    scroll-behavior: smooth;
+}
+
+.page {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    scroll-snap-align: start;
+}
+
+#animation-container {
+    background: linear-gradient(to right, #4aa6da, #0074b4);
+    color: white;
+    text-align: center;
+}
+
+#animation-container h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+#main-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 0.8fr 1.2fr;
+    gap: 20px;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+.top-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: #4aa6da;
+    color: white;
+}
+
+.bottom-container {
+    display: flex;
+    gap: 20px;
+    grid-column: span 3;
+}
+
+.bottom-section {
+    flex: 1;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #4aa6da;
+    color: white;
+}
+
+#links-container {
+    background-color: #0074b4;
+    color: white;
+}
+
+.link-icons-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 800px;
+}
+
+.link-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+}
+
+.link-icon img {
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+#projects-container {
+    background-color: #333;
+    color: white;
+    position: relative;
+}
+
+.corner-text {
+    position: absolute;
+    color: #ffd369;
+    z-index: 3;
+    max-width: 45%;
+    padding: 0 20px;
+}
+
+.corner-text.left {
+    left: 0;
+    top: 40px;
+    text-align: center;
+    font-size: 2rem;
+    text-decoration: underline;
+}
+
+.corner-text.right {
+    right: 0;
+    top: 45px;
+    text-align: center;
+    font-size: 1rem;
+} 
