@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     animationContainer.style.willChange = 'transform';
 
     // Preload the animation JSON
-    fetch('/WebsiteComponents/JSON/LandingPage.json')
+    fetch('./WebsiteComponents/JSON/LandingPage.json')
         .then(response => response.json())
         .then(data => {
             var animation = lottie.loadAnimation({
