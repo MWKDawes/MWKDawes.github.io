@@ -50,16 +50,28 @@ html, body {
 
 /* Page 1: Animation */
 #animation-container {
-    background: linear-gradient(to right, #4aa6da, #0074b4);
     position: relative;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    perspective: 1000px;
-    will-change: transform;
+    background: linear-gradient(to right, #4aa6da, #0074b4);
+}
+
+.loading-state {
+    text-align: center;
+    color: white;
+    z-index: 1;
+}
+
+.loading-state h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.loading-state p {
+    font-size: 1.2rem;
+    opacity: 0.8;
 }
 
 /* Page 2: Main Content */

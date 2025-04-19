@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     var animationContainer = document.getElementById('animation-container');
+    var loadingState = animationContainer.querySelector('.loading-state');
 
     // Add CSS to prevent flickering
     animationContainer.style.transform = 'translateZ(0)';
@@ -9,7 +10,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Preload the animation JSON
     fetch('./WebsiteComponents/JSON/LandingPage.json')
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
         .then(data => {
             var animation = lottie.loadAnimation({
                 container: animationContainer,
@@ -35,6 +41,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
             animation.addEventListener("DOMLoaded", function () {
                 console.log("Animation loaded and ready to play");
+                if (loadingState) {
+                    loadingState.style.display = 'none';
+                }
             });
 
             animation.addEventListener("complete", function () {
@@ -43,6 +52,9 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .catch(error => {
             console.error("Error loading animation:", error);
+            if (loadingState) {
+                loadingState.innerHTML = '<h1>Welcome to My Portfolio</h1><p>Animation failed to load. Please refresh the page.</p>';
+            }
         });
 
     // Add click handler for About Me button
